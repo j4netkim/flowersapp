@@ -1,0 +1,7 @@
+<h1><%=@season.name%></h1>
+<h3>Flowers:</h3>
+<ul>
+<%=@season.flowers.each do |s|%>
+    <li><%=@flower.name%></li>
+    <%end%>
+</ul>
