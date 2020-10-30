@@ -1,21 +1,15 @@
-<h1>Create a new Flower</h1>
-
+<h2>Create a new Flower</h2>
+<br>
+<br>
 <form action="/flowers" method="POST">
-<label> for="name">Name:</label>
-<br>
-<input type="text" name="name" placeholder="flower">
-<br>
-
-
-<label>Choose a season: </label>
-<% @seasons.each do |s| %>
-    <input type="
-    <% end %>
-
-or create a new season:
-<br>
-<label>Season Name: </label>
-<input type="text" name="season_name">
-<br>
-<input type="submit" name="Create a Flower">
+<label>Select Seasons:</label>
+<select name="season_id">
+<% @seasons.each do |season| %>
+    <option value="<%= season.id %>"><%= season.name %></option>
+</select>
+<% end %>
+<hr>
+<label>Flower Name: <input type="text" name="name"></label><br>
+<label>Content: <input type="text" name="content"></label><br>
+<input type="submit">
 </form>

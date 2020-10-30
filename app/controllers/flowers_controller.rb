@@ -11,16 +11,22 @@ class FlowersController < ApplicationController
     end
     
     post '/flowers' do
-        @flower = Flower.new(season_name: params[:season_name], price: params[:price])
-        @season = Season.find_or_create_by(name: params[:season])
-        @flower.season = @season
-        @flower.save
-        # redirect "flowers/#{@flower.id}
+        season = Season.find_by(id: params[:season_id])
+        flower = season.flower.build(params)
+        if flower.save
+            redirect "/flowers/#{flower.id}"
+        else
+            redirect "/flowers/new"
+        end
     end
     
     get '/flowers/:id' do
-        @flower = Flower.find(params[:id])
-        erb :'flowers/show'
+        @flower = Flower.find_by(id: params[:id])
+        if @flower
+            erb :'flowers/show'
+        else
+            redirect '/flowers'
+        end
     end
 
     patch 'flowers/:id' do
