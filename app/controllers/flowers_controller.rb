@@ -19,6 +19,15 @@ class FlowersController < ApplicationController
             redirect "/flowers/new"
         end
     end
+
+    get '/flowers/:id/edit' do
+        @flower = Flower.find_by(id: params)
+        erb :'flowers/edit'
+    end
+
+    patch '/flowers/:id' do
+
+    end
     
     get '/flowers/:id' do
         @flower = Flower.find_by(id: params[:id])

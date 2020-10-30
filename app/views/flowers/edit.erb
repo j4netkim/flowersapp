@@ -1,4 +1,16 @@
-<h1>Update a Flower</h1>
-
-<form >
+<h2>Update a Flower</h2>
+<hr>
+<br>
+<form action="/flowers/<%= @flower.id %>" method="POST">
+<input type="hidden" id="hidden" name="_method" value="PATCH">
+<label>Select Seasons:</label>
+<select name="season_id">
+<% @seasons.each do |season| %>
+    <option value="<%= season.id %>"><%= season.name %></option>
+</select>
+<% end %>
+<hr>
+<label>Flower Name: <input type="text" name="name"></label><br>
+<label>Flower Name: <input type="text" name="name" placeholder="cosmos"></label><br>
+<input type="submit">
 </form>
