@@ -2,8 +2,10 @@
 <hr>
 <br>
 <p><%=@flower.name%></p>
-<a href="/flowers/<%= @flower.id %>" method="DELETE">Delete</a>
+<form method="POST" action="/flowers/<%= @flower.id %>">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+</form>
 <a href="/flowers/<%= @flower.id %>/edit">Edit</a>
-
 <br>
 <a href="/flowers">Previous page</a>  

@@ -44,5 +44,7 @@ class FlowersController < ApplicationController
     end
     delete '/flowers/:id' do
         @flower = Flower.find_by(id: params[:id])
+        @flower.destroy
+        redirect 
     end
 end
