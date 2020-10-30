@@ -8,5 +8,6 @@ end
 
 
 use FlowersController
-use SeasonsController
+use UsersController
+use SessionsController
 run ApplicationController

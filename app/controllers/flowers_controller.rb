@@ -6,13 +6,13 @@ class FlowersController < ApplicationController
     end
 
     get '/flowers/new' do
-        @seasons = Season.all
+        @users = User.all
         erb :'flowers/new'
     end
     
     post '/flowers' do
-        season = Season.find_by(id: params[:season_id])
-        flower = season.flower.build(params)
+        season = User.find_by(id: params[:season_id])
+        flower = User.flower.build(params)
         if flower.save
             redirect "/flowers/#{flower.id}"
         else

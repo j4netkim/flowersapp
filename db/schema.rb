@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201029204738) do
+ActiveRecord::Schema.define(version: 20201030191037) do
 
   create_table "flowers", force: :cascade do |t|
-    t.string "name"
+    t.string "flower_name"
   end
 
-  create_table "seasons", force: :cascade do |t|
-    t.string  "season_name"
-    t.integer "price"
-    t.integer "season_id"
+  create_table "users", force: :cascade do |t|
+    t.string  "user_name"
+    t.integer "user_id"
+    t.string  "password_digest"
   end
 
 end
