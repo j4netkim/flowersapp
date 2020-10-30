@@ -1,7 +1,9 @@
 <h2><%=@flower.name%></h2>
 <hr>
 <br>
-<p><%=@flower.content%></p>
+<p><%=@flower.name%></p>
+<a href="/flowers/<%= @flower.id %>" method="DELETE">Delete</a>
+<a href="/flowers/<%= @flower.id %>/edit">Edit</a>
 
 <br>
-<a href="/flowers">Previous page</a>
+<a href="/flowers">Previous page</a>  

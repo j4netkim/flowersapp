@@ -26,7 +26,12 @@ class FlowersController < ApplicationController
     end
 
     patch '/flowers/:id' do
-
+        flower = Flower.find_by(id: params[:id])
+        if flower.update(name: params[:name])
+            redirect "/flowers/#{flower.id}"
+        else
+            redirect "/flowers/#{flower.id}/edit"
+        end
     end
     
     get '/flowers/:id' do
@@ -37,8 +42,7 @@ class FlowersController < ApplicationController
             redirect '/flowers'
         end
     end
-
-    patch 'flowers/:id' do
-    
+    delete '/flowers/:id' do
+        @flower = Flower.find_by(id: params[:id])
     end
 end
