@@ -8,3 +8,11 @@
 <br>
 <a href="/flowers/new">Add a Flower</a>
 
+# <h1><%=@user.name%></h1>
+# <h3>Flowers:</h3>
+# <ul>
+# <%=@user.flowers.each do |s|%>
+#     <li><%=@flower.name%></li>
+#     <%end%>
+# </ul>
+

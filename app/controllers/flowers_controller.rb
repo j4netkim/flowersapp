@@ -1,18 +1,25 @@
 class FlowersController < ApplicationController
     
     get '/flowers' do
-        @flowers = Flower.all
-        erb :'flowers/index'
+        if logged_in?
+            @flowers = Flower.all
+            erb :'flowers/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/flowers/new' do
-        @users = User.all
-        erb :'flowers/new'
+        if logged_in?
+            erb :'flowers/new'
+        else
+            redirect '/login'
+        end
     end
     
     post '/flowers' do
-        season = User.find_by(id: params[:season_id])
-        flower = User.flower.build(params)
+        user = User.find_by(id: params[:season_id])
+        flower = current_user.flowers.build(params)
         if flower.save
             redirect "/flowers/#{flower.id}"
         else
@@ -21,30 +28,53 @@ class FlowersController < ApplicationController
     end
 
     get '/flowers/:id/edit' do
-        @flower = Flower.find_by(id: params)
-        erb :'flowers/edit'
+        if logged_in?
+            @flower = current_user.flowers.find_by(id: params)
+            if @flower
+                erb :'flowers/edit'
+            else
+                redirect '/flowers'
+            end
+        else
+            redirect 'login'
+        end
     end
 
     patch '/flowers/:id' do
-        flower = Flower.find_by(id: params[:id])
-        if flower.update(name: params[:name])
-            redirect "/flowers/#{flower.id}"
-        else
-            redirect "/flowers/#{flower.id}/edit"
-        end
-    end
-    
-    get '/flowers/:id' do
-        @flower = Flower.find_by(id: params[:id])
-        if @flower
-            erb :'flowers/show'
+        flower = current_user.flowers.find_by(id: params[:id])
+        if flower
+            if flower.update(name: params[:name])
+                redirect "/flowers/#{flower.id}"
+            else
+                redirect "/flowers"
+            end
         else
             redirect '/flowers'
         end
     end
+    
+    get '/flowers/:id' do
+        if logged_in?
+            @flower = current_user.flowers.find_by(id: params[:id])
+            if @flower
+                erb :'flowers/show'
+            else
+                redirect '/flowers'
+            end
+        else
+            redirect '/login'
+        end
+    end
+
     delete '/flowers/:id' do
-        @flower = Flower.find_by(id: params[:id])
-        @flower.destroy
-        redirect 
+        if logged_in?
+            @flower = Flower.find_by(id: params[:id])
+            if @flower
+                @flower.destroy
+            end
+            redirect '/flowers'
+        else
+            redirect '/login'
+        end
     end
 end
