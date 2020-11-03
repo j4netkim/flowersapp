@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         if user.save
             redirect '/flowers'
         else
-            redirect '/users/signup'
+            redirect '/login'
+        end
     end
 end

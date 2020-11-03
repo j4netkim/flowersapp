@@ -3,8 +3,9 @@
 <br>
 <form action="/flowers" method="POST">
 <label>Select Users:</label>
-<select name="season_id">
+<select name="user_id">
 <% @users.each do |user| %>
+    <% @users.each do |user| %>
     <option value="<%= user.id %>"><%= user.name %></option>
 </select>
 <% end %>
