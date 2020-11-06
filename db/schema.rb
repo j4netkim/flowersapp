@@ -14,13 +14,14 @@
 ActiveRecord::Schema.define(version: 20201030191037) do
 
   create_table "flowers", force: :cascade do |t|
-    t.string "flower_name"
+    t.string  "name"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "user_name"
-    t.integer "user_id"
-    t.string  "password_digest"
+    t.string "name"
+    t.text   "email"
+    t.string "password_digest"
   end
 
 end

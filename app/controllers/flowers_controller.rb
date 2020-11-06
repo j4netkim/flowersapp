@@ -2,7 +2,7 @@ class FlowersController < ApplicationController
     
     get '/flowers' do
         if logged_in?
-            @flowers = Flower.all
+            @flowers = current_user.flowers
             erb :'flowers/index'
         else
             redirect '/login'
@@ -27,9 +27,22 @@ class FlowersController < ApplicationController
         end
     end
 
+    get '/flowers/:id' do
+        if logged_in?
+            @flower = current_user.flowers.find_by(id: params[:id])
+            if @flower
+                erb :'flowers/show'
+            else
+                redirect '/flowers'
+            end
+        else
+            redirect '/login'
+        end
+    end
+
     get '/flowers/:id/edit' do
         if logged_in?
-            @flower = current_user.flowers.find_by(id: params)
+            @flower = current_user.flowers.find_by(id: params[:id])
             if @flower
                 erb :'flowers/edit'
             else
@@ -53,22 +66,10 @@ class FlowersController < ApplicationController
         end
     end
     
-    get '/flowers/:id' do
-        if logged_in?
-            @flower = current_user.flowers.find_by(id: params[:id])
-            if @flower
-                erb :'flowers/show'
-            else
-                redirect '/flowers'
-            end
-        else
-            redirect '/login'
-        end
-    end
 
     delete '/flowers/:id' do
         if logged_in?
-            @flower = Flower.find_by(id: params[:id])
+            @flower = current_user.flowers.find_by(id: params[:id])
             if @flower
                 @flower.destroy
             end

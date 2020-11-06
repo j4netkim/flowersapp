@@ -3,21 +3,18 @@
     <h1 class="largeHeader">Sign up</h1>
     <p class="centeredDescription col_4">Already signed up? You can <a href="/login">log in here.</a></p>
     <div class="centered_col">
-      <form class="signupForm">
+      <form action="/signup" method="POST" class="signupForm">
 
         <label for="name">Full name</label><br>
-        <input class="shortInput" id="name" type="text"><br>
+        <input class="shortInput" name="name" type="text"><br>
 
         <label for="email">Email</label><br>
-        <input class="shortInput" id="email" type="text"><br>
+        <input class="shortInput" name="email" type="text"><br>
 
         <label for="password">Password</label><br>
-        <input class="shortInput" id="password" type="password"><br>
-
-        <label for="confirmPassword">Confirm password</label><br>
-        <input class="shortInput" id="confirmPassword" type="password"><br>
+        <input class="shortInput" name="password" type="password"><br>
         <br>
-        <a href="/users/account" class="button createAccount">Create account</a>
+        <input type="submit">
 
       </form>
 
