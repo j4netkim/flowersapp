@@ -18,12 +18,15 @@ class FlowersController < ApplicationController
     end
     
     post '/flowers' do
-        user = User.find_by(id: params[:season_id])
-        flower = current_user.flowers.build(params)
-        if flower.save
-            redirect "/flowers/#{flower.id}"
+        if logged_in? 
+            flower = current_user.flowers.build(params)
+            if flower.save
+                redirect "/flowers/#{flower.id}"
+            else
+                redirect "/flowers/new"
+            end
         else
-            redirect "/flowers/new"
+            redirect "/login"
         end
     end
 
@@ -49,7 +52,7 @@ class FlowersController < ApplicationController
                 redirect '/flowers'
             end
         else
-            redirect 'login'
+            redirect '/login'
         end
     end
 
