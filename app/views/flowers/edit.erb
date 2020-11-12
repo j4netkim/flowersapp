@@ -3,7 +3,6 @@
 <br>
 <form action="/flowers/<%= @flower.id %>" method="POST">
 <input type="hidden" id="hidden" name="_method" value="PATCH">
-<label>Flower Name: <input type="text" name="flower_name" value="<%= @flower.name %>"></label><br>
-<label>Flower Name: <input type="text" name="flower_name" placeholder="cosmos" value="<%= @flower.name %>"></label><br>
+<label>Flower Name: <input type="text" name="name" value="<%= @flower.name %>"></label><br>
 <input type="submit">
 </form>
